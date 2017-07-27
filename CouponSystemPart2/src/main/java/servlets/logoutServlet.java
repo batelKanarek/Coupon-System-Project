@@ -14,7 +14,7 @@ import CouponSystem.step2.CSlogger;
 
 /**
  * Logout Servlet- invalidates the user session, removes the login cookies ,
- * closes logger file handler and redirects to login page
+ * and redirects to login page
  */
 public class logoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,10 +24,6 @@ public class logoutServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();
-		}
-		Handler[] handlers = CSlogger.getInstance().getLogger().getHandlers();
-		for (Handler handler : handlers) {
-			handler.close();
 		}
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
